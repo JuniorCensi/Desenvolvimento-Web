@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Meu Estoque</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="Exercicio_Web.css">
+    </head>
+    <body>
+        <header>
+            <h1>Cadastro de Produtos</h1>
+            <h2>Cadastre seus produtos preenchendo o formulário abaixo.</h2>
+        </header>
+        <hr />
+        <nav>
+            <ul>
+                <li><a href="/">Página Inicial</a></li>
+                <li><a href="/sobre">Contato</a></li>
+                <li><a href="/sobre">Sobre</a></li>
+            </ul>
+        </nav>
+        <hr />
+
+        <main>
+        <section>
+            <h1>Adicionar Novo Produto</h1>
+            <form id="formProduto" class="container">
+                <div class="campoFormulario">
+                    <label for="nome">Nome do Produto:</label>
+                    <input type="text" name="nome" id="nome">
+                </div>
+
+                <div class="campoFormulario">
+                    <label for="codigo">Código SKU:</label>
+                    <input type="text" name="codigo" id="codigo" pattern="SKU-\d{3}" placeholder="Ex: SKU-123">
+                </div>
+
+                <div class="campoFormulario">
+                    <label for="categoria">Categoria:</label>
+                    <select name="categoria" id="categoria">
+                        <option value="Eletrônicos">Eletrônicos</option>
+                        <option value="Alimentos">Alimentos</option>
+                        <option value="Roupas">Roupas</option>
+                        <option value="Limpeza">Limpeza</option>
+                    </select>
+                </div>
+
+                <div class="campoFormulario">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" name="quantidade" id="quantidade" min="'1" max="'1000">
+                </div>
+
+                <div class="campoFormulario">
+                    <label for="preco">Preço:</label>
+                    <input type="text" name="preco" id="preco" step="0.01" placeholder="00.00">
+                </div>
+
+                <div class="campoFormulario">
+                    <label for="descricao">Descrição</label>
+                    <br />
+                    <textarea name="descricao" id="descricao"></textarea>
+                </div>
+
+                <div class="campoFormulario">
+                    <input id="disponivel" name="disponivel" type="checkbox" value="sim">
+                    <label for="disponivel">Produto Disponível</label>
+                </div>
+
+                <div class="campoFormulario">
+                    <input type="submit" name="enviar" value="Cadastrar Produto" id="btEnviar">
+                </div>
+            </form>
+        </section>
+
+        <hr />
+
+        <section>
+            <table name="tabelaProdutos" id="tabelaProdutos">
+                <caption>Produtos em Estoque</caption>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>SKU</th>
+                        <th>Categoria</th>
+                        <th>Quantidade</th>
+                        <th>Preço (R$)</th>
+                        <th id="descricao">Descricao</th>
+                        <th>Disponível</th>
+                    </tr>
+                </thead>
+                    
+                <tbody id="tabelaProdutosBody">
+                    <tr>
+                        <td>Camisa</td>
+                        <td>SKU-123</td>
+                        <td>Roupas</td>
+                        <td>100</td>
+                        <td>50.00</td>
+                        <td>Manga longa verde</td>
+                        <td>Sim</td>
+                    </tr>
+                    <tr>
+                        <td>Manga</td>
+                        <td>SKU-222</td>
+                        <td>Alimentos</td>
+                        <td>5</td>
+                        <td>15.00</td>
+                        <td>Amarela e madura</td>
+                        <td>Não</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        </main>
+        
+        </body>
+        <hr />
+        <footer>
+        <h5>© 2025 Meu Estoque</h5>
+    </footer>
+    <script type="text/javascript" src="Exercicio_Web.js">
+    </script>
+    </body>
+</html>

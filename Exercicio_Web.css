@@ -1,0 +1,62 @@
+body{
+    background-color: lightblue;
+}
+
+a:link {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+form.container {
+    display: grid;
+    grid-template-columns: 220px 220px 220px;
+    grid-template-rows: 60px 60px 60px;
+}
+
+div.campoFormulario{
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    max-width: 70%;
+    margin-right: auto;
+}
+
+textarea{
+    min-width: 100px;
+    max-width: 200px;
+    min-height: 20px;
+    max-height: 70px;
+}
+
+table{
+    background-color: rgb(230, 233, 236);
+    border-collapse: collapse;
+}
+
+thead{
+    background-color: #938d8d;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #e4dede;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    max-width: 200px;
+}
+
+th{
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd
+}
+
+
+
+
