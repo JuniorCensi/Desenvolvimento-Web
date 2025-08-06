@@ -10,7 +10,8 @@ header h1 {
 }
 
 p {
-    text-align: center;
+    text-align: left;
+    line-break: normal;
     font-family: Arial, sans-serif;
     font-size: 15px;
     color: #000000;
@@ -59,6 +60,7 @@ p {
     padding: 10px 18px;
     border-radius: 4px;
     font-size: 16px;
+    font-family: 'Arial, sans-serif';
     cursor: pointer;
     transition: background 0.2s;
 }
@@ -67,30 +69,30 @@ p {
     opacity: 0.8;
 }
 
-.filterAll-btn {
+.filterAll {
     background-color: rgba(211, 211, 211, 0.5); /* lightgray com transparência */
 }
 
-.filterPend-btn {
+.filterPend {
     background-color: rgba(240, 128, 128, 0.5); /* lightcoral com transparência */
 }
 
-.filterConc-btn {
+.filterConc {
     background-color: rgba(144, 238, 144, 0.5); /* lightgreen com transparência */
 }
 
 /* Quando selecionado, cor sólida */
-.filter-btn.selected.filterAll-btn {
+.filter-btn.selected.filterAll {
     background-color: gray;
     color: white;
 }
 
-.filter-btn.selected.filterPend-btn {
+.filter-btn.selected.filterPend {
     background-color: crimson;
     color: white;
 }
 
-.filter-btn.selected.filterConc-btn {
+.filter-btn.selected.filterConc {
     background-color: green;
     color: white;
 }
@@ -149,6 +151,8 @@ p {
 
 .task-priority {
     padding: 4px 30px;
+    min-width: 30%;
+    text-align: center;
     border-radius: 4px;
     font-size: 14px;
     font-weight: bold;
@@ -183,6 +187,7 @@ p {
     cursor: pointer;
     color: #888;
     font-size: 20px;
+    font-family: 'Arial, sans-serif';
     padding: 4px 4px;
     border-radius: 4px;
     transition: background 0.2s;
@@ -203,6 +208,7 @@ p {
     cursor: pointer;
     color: #e53935;
     font-size: 20px;
+    font-family: 'Arial, sans-serif';
     padding: 4px 4px;
     border-radius: 4px;
     transition: background 0.2s;
@@ -224,9 +230,6 @@ p {
     border-radius: 6px;
 }
 
-
-
-
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -243,11 +246,18 @@ p {
 
 .modal {
     background: #fff;
-    padding: 32px 28px;
+    padding: 32px;
     border-radius: 10px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.15);
     min-width: 320px;
     max-width: 95vw;
+}
+
+.modal form {
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
 }
 
 .modal h2 {
@@ -264,18 +274,23 @@ p {
     margin-bottom: 4px;
     font-weight: bold;
     font-family: 'Arial, sans-serif';
+    text-align: left;
 }
 
 .modal input[type="text"],
 .modal input[type="date"],
 .modal select {
     width: 100%;
-    padding: 8px;
+    padding: 8px 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
     font-size: 15px;
     font-family: 'Arial, sans-serif';
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.modal select {
+    width: 107%; /* esse ajuste foi realizado para fins de alinhamento (problema desconhecido) */
 }
 
 .modal-actions {
@@ -283,6 +298,7 @@ p {
     justify-content: flex-end;
     gap: 10px;
     margin-top: 18px;
+    align-items: justify;
 }
 
 .close-btn {
@@ -297,6 +313,23 @@ p {
     transition: background 0.2s;
 }
 
+.modal .remove-btn {
+    width: max-content;
+    background: #e53935;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: 'Arial, sans-serif';
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
 .close-btn:hover {
     background: #ccc;
+}
+
+.modal .remove-btn:hover {
+    background: #c62828;
 }
