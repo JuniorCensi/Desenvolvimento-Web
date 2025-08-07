@@ -109,10 +109,33 @@ formAddTask.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Pega os valores dos campos do formulário
-    const title = document.getElementById('title').value;
+    const title = document.getElementById('title').value.trim();
     const dueDate = document.getElementById('due').value;
     const priority = document.getElementById('priority').value;
-    const description = document.getElementById('desc').value;
+    const description = document.getElementById('desc').value.trim();
+
+    // Validações Simples para os campos do formulário
+    if (!title) {
+        alert('O título não pode ser vazio.');
+        return; // Se o título estiver vazio, exibe um alerta e não adiciona a tarefa
+    }
+    if (!description) {
+        alert('A descrição não pode ser vazia.');
+        return; // Se a descrição estiver vazia, exibe um alerta e não adiciona a tarefa
+    }
+    if (!dueDate) {
+        alert('Informe uma data de vencimento.');
+        return; // Se a data de vencimento estiver vazia, exibe um alerta e não adiciona a tarefa
+    }
+    const dueYear = new Date(dueDate).getFullYear();
+    if (dueYear > 2100) {
+        alert('O ano limite para vencimento é 2100.');
+        return; // Se o ano da data de vencimento for maior que 2100, exibe um alerta e não adiciona a tarefa
+    }
+    if (new Date(dueDate) < new Date()) {
+        alert('Informe uma data de vencimento futura.');
+        return; // Se a data de vencimento for anterior à data atual, exibe um alerta e não adiciona a tarefa
+    }
 
     // Cria um novo objeto de tarefa com os valores do formulário
     const newTask = {
@@ -163,10 +186,33 @@ formEditTask.addEventListener('submit', function (e) {
 
     // Pega o índice da tarefa sendo editada e os valores dos campos do formulário
     const index = window.taskEditingIndex;
-    const title = document.getElementById('edit-title').value;
+    const title = document.getElementById('edit-title').value.trim();
     const dueDate = document.getElementById('edit-due').value;
     const priority = document.getElementById('edit-priority').value;
-    const description = document.getElementById('edit-desc').value;
+    const description = document.getElementById('edit-desc').value.trim();
+
+    // Validações Simples para os campos do formulário
+    if (!title) {
+        alert('O título não pode ser vazio.');
+        return; // Se o título estiver vazio, exibe um alerta e não atualiza a tarefa
+    }
+    if (!description) {
+        alert('A descrição não pode ser vazia.');
+        return; // Se a descrição estiver vazia, exibe um alerta e não atualiza a tarefa
+    }
+    if (!dueDate) {
+        alert('Informe uma data de vencimento.');
+        return; // Se a data de vencimento estiver vazia, exibe um alerta e não atualiza a tarefa
+    }
+    const dueYear = new Date(dueDate).getFullYear();
+    if (dueYear > 2100) {
+        alert('O ano limite para vencimento é 2100.');
+        return; // Se o ano da data de vencimento for maior que 2100, exibe um alerta e não atualiza a tarefa
+    }
+    if (new Date(dueDate) < new Date()) {
+        alert('Informe uma data de vencimento futura.');
+        return; // Se a data de vencimento for anterior à data atual, exibe um alerta e não atualiza a tarefa
+    }
 
     // Atribui os novos valores à tarefa no array
     tasks[index] = {
