@@ -1,3 +1,5 @@
+/****************** Estilos gerais para títulos, parágrafos, cabeçalhos e containers ******************/
+
 header hr {
     border: none;
     border-top: 2px solid #888;
@@ -38,6 +40,8 @@ p {
     font-size: 16px;
 }
 
+/********************** Estilo para o botão de adicionar tarefa **********************/
+
 .add-btn {
     background-color: #1976d2;
     color: #fff;
@@ -54,6 +58,8 @@ p {
     background-color: #1565c0;
 }
 
+/********************** Estilo para a classe de botões de filtragem **********************/
+
 .filter-btn {
     color: #333;
     border: none;
@@ -69,16 +75,9 @@ p {
     opacity: 0.8;
 }
 
+/********************** Estilo para a classe de botões de filtragem 'Todas' **********************/
 .filterAll {
     background-color: rgba(211, 211, 211, 0.5); /* lightgray com transparência */
-}
-
-.filterPend {
-    background-color: rgba(240, 128, 128, 0.5); /* lightcoral com transparência */
-}
-
-.filterConc {
-    background-color: rgba(144, 238, 144, 0.5); /* lightgreen com transparência */
 }
 
 /* Quando selecionado, cor sólida */
@@ -87,9 +86,19 @@ p {
     color: white;
 }
 
+/********************** Estilo para a classe de botões de filtragem 'Pendentes' **********************/
+.filterPend {
+    background-color: rgba(240, 128, 128, 0.5); /* lightcoral com transparência */
+}
+
 .filter-btn.selected.filterPend {
     background-color: crimson;
     color: white;
+}
+
+/********************** Estilo para a classe de botões de filtragem 'Concluídas' **********************/
+.filterConc {
+    background-color: rgba(144, 238, 144, 0.5); /* lightgreen com transparência */
 }
 
 .filter-btn.selected.filterConc {
@@ -97,90 +106,7 @@ p {
     color: white;
 }
 
-.task-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.task-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #f0f0f0;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    padding: 14px 18px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    gap: 20px;
-}
-
-.task-main {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 2;
-}
-
-.task-desc {
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    color: black;
-}
-
-.task-main input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #1976d2; /* cor azul para checkbox moderna */
-}
-
-.task-due {
-    flex: 1;
-    text-align: center;
-    color: #666;
-    font-size: 15px;
-}
-
-.task-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-    justify-content: flex-end;
-}
-
-.task-priority {
-    padding: 4px 30px;
-    min-width: 30%;
-    text-align: center;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.task-priority-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.task-priority.alta {
-    background: #e53935;
-}
-.task-priority.media {
-    background: #fbc02d;
-    color: #333;
-}
-.task-priority.baixa {
-    background: #43a047;
-}
-
-.task-actions {
-    gap: 5px;
-}
-
+/********************** Estilo para os botões de editar tarefas **********************/
 .edit-btn {
     background: none;
     border: none;
@@ -202,6 +128,7 @@ p {
     background: #e0e0e0;
 }
 
+/********************** Estilo para a classe de botões de remover tarefas **********************/
 .remove-btn {
     background: none;
     border: none;
@@ -218,6 +145,7 @@ p {
     background: #f3b7b7;
 }
 
+/********************** Estilo para a classe de botões de ação de editar e remover tarefas **********************/
 .edit-btn,
 .remove-btn {
     width: 36px;
@@ -229,6 +157,103 @@ p {
     font-size: 22px;
     border-radius: 6px;
 }
+
+
+/********************** Estilo para a lista de tarefas e seus itens **********************/
+
+/* Estilo para a lista de tarefas e seus itens */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo para cada item de tarefa */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    gap: 20px;
+}
+
+/* Estilo para o conteúdo principal da tarefa */
+.task-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 2;
+}
+
+/* Estilo para o título da tarefa */
+.task-desc {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+}
+
+/* Estilo para o checkbox da tarefa */
+.task-main input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #1976d2; /* cor azul para checkbox moderna */
+}
+
+/* Estilo para a data de vencimento da tarefa */
+.task-due {
+    flex: 1;
+    text-align: center;
+    color: #666;
+    font-size: 15px;
+}
+
+/* Estilo para as ações da tarefa (botões 'editar' e 'remover') */
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+/* Estilo para o conteúdo de prioridade da tarefa */
+.task-priority {
+    padding: 4px 30px;
+    min-width: 30%;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Estilo para o container de prioridade da tarefa */
+.task-priority-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para as prioridades de tarefa */
+
+.task-priority.alta {
+    background: #e53935;
+}
+.task-priority.media {
+    background: #fbc02d;
+    color: #333;
+}
+.task-priority.baixa {
+    background: #43a047;
+}
+
+
+/********************** Estilo para os modais e botões de edição, remoção e detalhes de tarefas **********************/
 
 .modal-overlay {
     position: fixed;
@@ -290,7 +315,7 @@ p {
 }
 
 .modal select {
-    width: 107%; /* esse ajuste foi realizado para fins de alinhamento (problema desconhecido) */
+    width: 107%; /* esse ajuste foi realizado para fins de alinhamento */
 }
 
 .modal-actions {
@@ -313,6 +338,10 @@ p {
     transition: background 0.2s;
 }
 
+.close-btn:hover {
+    background: #ccc;
+}
+
 .modal .remove-btn {
     width: max-content;
     background: #e53935;
@@ -324,10 +353,6 @@ p {
     font-family: 'Arial, sans-serif';
     cursor: pointer;
     transition: background 0.2s;
-}
-
-.close-btn:hover {
-    background: #ccc;
 }
 
 .modal .remove-btn:hover {

@@ -5,37 +5,37 @@
     <title>To-Do List</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="to-do.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Importando Material Icons para ícone de 'Editar' -->
 </head>
 
 <body>
-    <header>
+    <header> <!-- Cabeçalho da página -->
         <h1>Minhas Tarefas</h1>
         <hr>
     </header>
     <main>
-        <div class="vertical-container">
-            <div class="container input-row">
+        <div class="vertical-container"> <!-- Container vertical para organizar os elementos -->
+            <div class="container input-row"> <!-- Linha de entrada para adicionar novas tarefas -->
                 <input type="text" class="task-input" placeholder="Insira uma nova tarefa">
                 <button class="add-btn">Adicionar Tarefa</button>
             </div>
-            <div class="container input-row">
+            <div class="container input-row"> <!-- Linha de filtro para as tarefas, com botões para cada status -->
                 <p>Filtrar por:</p>
                 <button class="filter-btn filterAll" id="filterAll-btn">Todas</button> <!-- adicionar classe SELECTED -->
-                <button class="filter-btn filterPend" id="filterPend-btn">Pendentes</button><!-- adicionar classe SELECTED -->
-                <button class="filter-btn filterConc" id="filterConc-btn">Concluídas</button><!-- adicionar classe SELECTED -->
+                <button class="filter-btn filterPend" id="filterPend-btn">Pendentes</button> <!-- adicionar classe SELECTED -->
+                <button class="filter-btn filterConc" id="filterConc-btn">Concluídas</button> <!-- adicionar classe SELECTED -->
             </div>
-            <div class="container">
+            <div class="container"> <!-- Container para a lista de tarefas -->
                 <ul id="taskList" class="task-list">
-                   <!-- Aqui serão inseridas as tarefas -->
+                   <!-- Nesta lista serão inseridas as tarefas -->
                 </ul>
             </div>
             
-            <div class="modal-overlay" id="modalAddTask">
-                <div class="modal">
+            <div class="modal-overlay" id="modalAddTask"> <!-- Modal para adicionar nova tarefa -->
+                <div class="modal"> <!-- Conteúdo do modal -->
                     <h2>Adicionar Nova Tarefa</h2>
                     <hr>
-                    <form id="formAddTask">
+                    <form id="formAddTask"> <!-- Formulário para adicionar tarefa -->
                         <label for="title">Título:</label>
                         <input type="text" id="title" name="title" required>
 
@@ -53,18 +53,18 @@
                         <input type="text" id="desc" name="desc">
 
                         <div class="modal-actions">
-                            <button type="submit" class="add-btn">Adicionar</button>
-                            <button type="button" class="close-btn">Cancelar</button>
+                            <button type="submit" class="add-btn">Adicionar</button> <!-- Botão para envio do formulário -->
+                            <button type="button" class="close-btn">Cancelar</button> <!-- Botão para fechar o modal e cancelar o envio -->
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="modal-overlay" id="modalEditTask">
+            <div class="modal-overlay" id="modalEditTask"> <!-- Modal para editar tarefa existente -->
                 <div class="modal">
                     <h2>Editar Tarefa</h2>
                     <hr>
-                    <form id="formEditTask">
+                    <form id="formEditTask"> <!-- Formulário para editar tarefa -->
                         <label for="edit-title">Título:</label>
                         <input type="text" id="edit-title" name="edit-title" required>
 
@@ -82,26 +82,26 @@
                         <input type="text" id="edit-desc" name="edit-desc">
 
                         <div class="modal-actions">
-                            <button type="submit" class="add-btn">Salvar</button>
-                            <button type="button" class="close-btn">Cancelar</button>
+                            <button type="submit" class="add-btn">Salvar</button> <!-- Botão para salvar as alterações -->
+                            <button type="button" class="close-btn">Cancelar</button> <!-- Botão para fechar o modal e cancelar as alterações -->
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="modal-overlay" id="modalRemoveTask">
+            <div class="modal-overlay" id="modalRemoveTask"> <!-- Modal para remover tarefa -->
                 <div class="modal">
                     <h2>Remover Tarefa</h2>
                     <hr>
                     <p>Você tem certeza que deseja remover esta tarefa?</p>
                     <div class="modal-actions">
-                        <button type="button" class="remove-btn">Remover</button>
-                        <button type="button" class="close-btn">Cancelar</button>
+                        <button type="button" class="remove-btn">Remover</button> <!-- Botão para confirmar a remoção da tarefa -->
+                        <button type="button" class="close-btn">Cancelar</button> <!-- Botão para fechar o modal e cancelar a remoção -->
                     </div>
                 </div>
             </div>
 
-            <div class="modal-overlay" id="itemDetails">
+            <div class="modal-overlay" id="itemDetails"> <!-- Modal para exibir detalhes da tarefa -->
                 <div class="modal">
                     <h2>Detalhes da Tarefa</h2>
                     <hr><br>
@@ -111,14 +111,14 @@
                     <p><strong>Descrição:</strong> <span id="item-desc"></span></p>
                     <br><hr>
                     <div class="modal-actions">
-                        <button type="button" class="close-btn">Fechar</button>
+                        <button type="button" class="close-btn">Fechar</button> <!-- Botão para fechar o modal -->
                     </div>
                 </div>
             </div>
 
         </div>
     </main>
-    <script src="to-do.js"></script>
+    <script src="to-do.js"></script> <!-- Importando o script JavaScript para lógica e funcionalidades da To-Do List -->
 </body>
 
 </html>
