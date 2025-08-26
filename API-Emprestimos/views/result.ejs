@@ -1,0 +1,22 @@
+
+<%- include('partials/header') %>
+<main style="max-width: 600px; margin: 0 auto; padding: 2rem; text-align: center;">
+  <h2>Resultado da Análise</h2>
+  <p><strong>Cliente:</strong> <%= customer %></p>
+  <% if (loans.length > 0) { %>
+    <ul style="list-style: none; padding: 0;">
+      <% loans.forEach(loan => { %>
+        <li style="margin-bottom: 1rem; background: #f2f2f2; padding: 1rem; border-radius: 8px;">
+          <span style="font-weight: bold; color: #2a7ae2;">Tipo:</span> <%= loan.type %> <br>
+          <span style="font-weight: bold; color: #2a7ae2;">Taxa de juros:</span> <%= loan.interest_rate %>%
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p style="color: #c00; font-weight: bold;">O cliente não se qualifica para nenhuma modalidade de crédito.</p>
+  <% } %>
+  <form action="/" method="get" style="margin-top: 2rem;">
+    <button type="submit" style="padding: 0.7rem 2rem; font-size: 1rem; background: #ff341e; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Nova Consulta</button>
+  </form>
+</main>
+<%- include('partials/footer') %>

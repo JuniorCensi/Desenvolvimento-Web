@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+    <h2>Análise de Crédito</h2>
+        <form action="/creditos" method="POST">
+                <div class="form-group">
+                        <input type="text" name="name" id="name" placeholder="Nome" required maxlength="50">
+                        <input type="number" name="age" id="age" placeholder="Idade" required min="1" max="120">
+                        <input type="number" name="income" id="income" placeholder="Salário" required min="0" max="999999">
+                        <input type="text" name="cpf" id="cpf" placeholder="CPF" required maxlength="14">
+                        <input type="text" name="location" id="location" placeholder="Localização" required maxlength="40">
+                </div>
+                <button type="submit">Enviar</button>
+        </form>
+
+        <script>
+        // Limita caracteres/dígitos em todos os campos
+        document.getElementById('name').addEventListener('input', function(e) {
+            if (e.target.value.length > 50) e.target.value = e.target.value.slice(0, 50);
+        });
+        document.getElementById('age').addEventListener('input', function(e) {
+            if (e.target.value.length > 3) e.target.value = e.target.value.slice(0, 3);
+            if (parseInt(e.target.value) > 120) e.target.value = 120;
+            if (parseInt(e.target.value) < 1 && e.target.value !== '') e.target.value = 1;
+        });
+        document.getElementById('income').addEventListener('input', function(e) {
+            if (e.target.value.length > 7) e.target.value = e.target.value.slice(0, 7);
+            if (parseInt(e.target.value) > 999999) e.target.value = 999999;
+            if (parseInt(e.target.value) < 0 && e.target.value !== '') e.target.value = 0;
+        });
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+            if (value.length > 11) value = value.slice(0, 11);
+            // Formata: 000.000.000-00
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        });
+        document.getElementById('location').addEventListener('input', function(e) {
+            if (e.target.value.length > 40) e.target.value = e.target.value.slice(0, 40);
+        });
+        </script>
+    <%- include('partials/footer') %>
