@@ -4,7 +4,6 @@ import { listarUsuariosController } from "../controllers/loan.js";
 
 const router = Router();
 
-
 // Formulário para sumissão de usuários
 router.get('/', abrirFormulario);
 
