@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <%- include('includes/head') %>
+    <title>Blog de Receitas</title>
+</head>
+<body>
+    <%- include('includes/navigation') %>
+    <h1>Receitas</h1>
+    <form method="get" action="/">
+        <input type="text" name="busca" placeholder="Buscar por título ou ingrediente" value="<%= busca %>">
+        <button type="submit">Buscar</button>
+    </form>
+    <div>
+        <strong>Categorias:</strong>
+        <a href="/">Todas</a>
+        <% ['Massas','Sobremesas', 'Vegano', 'Carnes', 'Saladas'].forEach(cat => { %>
+            <a href="/?categoria=<%= cat %>"><%= cat %></a>
+        <% }) %>
+    </div>
+    <ul>
+        <% receitas.forEach(r => { %>
+            <li>
+                <a href="/receitas/<%= r._id %>"><%= r.titulo %></a> - <%= r.categoria %>
+                <p><strong>Ingredientes:</strong> <%= r.ingredientes.join(', ') %></p>
+                <p><strong>Instruções:</strong> <%= r.instrucoes %></p>
+            </li>
+        <% }) %>
+    </ul>
+    <div>
+        <% if (page > 1) { %>
+            <a href="/?page=<%= page - 1 %>&busca=<%= busca %>&categoria=<%= categoria %>">Anterior</a>
+        <% } %>
+        <% if ((page * 5) < total) { %>
+            <a href="/?page=<%= page + 1 %>&busca=<%= busca %>&categoria=<%= categoria %>">Próxima</a>
+        <% } %>
+    </div>
+    <%- include('includes/end') %>
+</body>
+</html>

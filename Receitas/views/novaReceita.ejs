@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <%- include('includes/head') %>
+    <title>Nova Receita - Blog de Receitas</title>
+</head>
+<body>
+    <%- include('includes/navigation') %>
+    <h1>Adicionar Nova Receita</h1>
+    <form method="post" action="/nova-receita">
+        <input type="text" name="titulo" placeholder="Título" required><br>
+        <input type="text" name="autor" placeholder="Autor" required><br>
+        <select name="categoria" required>
+            <option value="">Selecione a categoria</option>
+            <option value="Massas">Massas</option>
+            <option value="Sobremesas">Sobremesas</option>
+            <option value="Vegano">Vegano</option>
+            <option value="Carnes">Carnes</option>
+            <option value="Saladas">Saladas</option>
+        </select><br>
+        <textarea name="ingredientes" placeholder="Ingredientes separados por vírgula" required></textarea><br>
+        <textarea name="instrucoes" placeholder="Instruções" required></textarea><br>
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="/">Voltar</a>
+    <%- include('includes/end') %>
+</body>
+</html>
