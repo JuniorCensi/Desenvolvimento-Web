@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator';
 import Usuario from '../models/Usuario.js';
 
-export async function createUsuario(req, res) {
+export async function criarUsuario(req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
