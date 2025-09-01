@@ -6,17 +6,22 @@ export const listarReceitas = async (req, res) => {
     const { page = 1, limit = 5, busca = '', categoria = '' } = req.query;
     const filtro = {};
     if (busca) {
-        filtro.titulo = { $regex: busca, $options: 'i' };
+        filtro.$or = [
+            { titulo: { $regex: busca, $options: 'i' } },
+            { ingredientes: { $regex: busca, $options: 'i' } }
+        ];
     }
     if (categoria) {
         filtro.categoria = categoria;
     }
+    const pageNumber = Number(page) > 0 ? Number(page) : 1;
+    const limitNumber = Number(limit) > 0 ? Number(limit) : 5;
     try {
         const receitas = await Receita.find(filtro)
-            .skip((page - 1) * limit)
-            .limit(Number(limit));
+            .skip((pageNumber - 1) * limitNumber)
+            .limit(limitNumber);
         const total = await Receita.countDocuments(filtro);
-    res.render('home', { receitas, total, page, busca, categoria, path: '/' });
+        res.render('home', { receitas, total, page: pageNumber, busca, categoria, path: '/' });
     } catch (err) {
         res.status(500).send('Erro ao buscar receitas');
     }

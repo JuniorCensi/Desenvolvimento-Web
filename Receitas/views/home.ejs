@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <%- include('includes/head') %>
-    <title>Blog de Receitas</title>
-</head>
-<body>
-    <%- include('includes/navigation') %>
-    <h1>Receitas</h1>
-    <form method="get" action="/">
-        <input type="text" name="busca" placeholder="Buscar por título ou ingrediente" value="<%= busca %>">
-        <button type="submit">Buscar</button>
-    </form>
-    <div>
-        <strong>Categorias:</strong>
-        <a href="/">Todas</a>
-        <% ['Massas','Sobremesas', 'Vegano', 'Carnes', 'Saladas'].forEach(cat => { %>
-            <a href="/?categoria=<%= cat %>"><%= cat %></a>
+
+    <head>
+        <%- include('includes/head') %>
+            <link rel="stylesheet" href="/css/home.css">
+    </head>
+
+    <body>
+        <%- include('includes/navigation') %>
+            <main>
+                <h1>Lista de Receitas</h1>
+                <hr>
+        <form method="get" action="/" class="search-form">
+          <input type="text" name="busca" placeholder="Buscar por título ou ingrediente" value="<%= busca %>">
+          <input type="hidden" name="categoria" value="<%= categoria %>">
+          <button type="submit">Buscar</button>
+        </form>
+        <div class="categorias">
+          <strong>Categorias:</strong>
+          <a href="/" class="<%= !categoria ? 'active' : '' %>">Todas</a>
+          <% ['Massas','Sobremesas', 'Vegano', 'Carnes', 'Saladas'].forEach(cat => { %><a href="/?categoria=<%= cat %>" class="<%= categoria === cat ? 'active' : '' %>"><%= cat %></a><% }) %>
+        </div>
+                <ul class="recipe-list">
+                    <% receitas.forEach(r=> { %>
+                        <li>
+                            <a href="/receitas/<%= r._id %>">
+                                <%= r.titulo%>
+                            </a>
+                            <p><strong>Categoria:</strong> 
+                            <%= r.categoria %>
+                                <p><strong>Ingredientes:</strong>
+                                    <%= r.ingredientes.join(', ') %></p>
+          </li>
         <% }) %>
-    </div>
-    <ul>
-        <% receitas.forEach(r => { %>
-            <li>
-                <a href="/receitas/<%= r._id %>"><%= r.titulo %></a> - <%= r.categoria %>
-                <p><strong>Ingredientes:</strong> <%= r.ingredientes.join(', ') %></p>
-                <p><strong>Instruções:</strong> <%= r.instrucoes %></p>
-            </li>
-        <% }) %>
-    </ul>
-    <div>
+      </ul>
+      <div class="pagination">
         <% if (page > 1) { %>
-            <a href="/?page=<%= page - 1 %>&busca=<%= busca %>&categoria=<%= categoria %>">Anterior</a>
+          <a href="/?page=<%= page - 1 %>&busca=<%= busca %>&categoria=<%= categoria %>">Anterior</a>
         <% } %>
         <% if ((page * 5) < total) { %>
-            <a href="/?page=<%= page + 1 %>&busca=<%= busca %>&categoria=<%= categoria %>">Próxima</a>
+          <a href="/?page=<%= page + 1 %>&busca=<%= busca %>&categoria=<%= categoria %>">Próxima</a>
         <% } %>
-    </div>
+      </div>
+    </main>
     <%- include('includes/end') %>
-</body>
+    </body>
+
 </html>

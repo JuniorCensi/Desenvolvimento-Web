@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <%- include('includes/head') %>
-    <title>Nova Receita - Blog de Receitas</title>
+        <title>Nova Receita - Blog de Receitas</title>
+        <link rel="stylesheet" href="/css/novaReceita.css">
 </head>
+
 <body>
     <%- include('includes/navigation') %>
-    <h1>Adicionar Nova Receita</h1>
-    <form method="post" action="/nova-receita">
-        <input type="text" name="titulo" placeholder="Título" required><br>
-        <input type="text" name="autor" placeholder="Autor" required><br>
-        <select name="categoria" required>
-            <option value="">Selecione a categoria</option>
-            <option value="Massas">Massas</option>
-            <option value="Sobremesas">Sobremesas</option>
-            <option value="Vegano">Vegano</option>
-            <option value="Carnes">Carnes</option>
-            <option value="Saladas">Saladas</option>
-        </select><br>
-        <textarea name="ingredientes" placeholder="Ingredientes separados por vírgula" required></textarea><br>
-        <textarea name="instrucoes" placeholder="Instruções" required></textarea><br>
-        <button type="submit">Salvar</button>
-    </form>
-    <a href="/">Voltar</a>
-    <%- include('includes/end') %>
+        <main>
+            <h1>Adicionar Nova Receita</h1>
+            <hr>
+            <form method="post" action="/nova-receita">
+                <label for="titulo">Título:</label>
+                <input type="text" name="titulo" placeholder="Título" required><br>
+                <label for="autor">Autor:</label>
+                <input type="text" name="autor" placeholder="Autor" required><br>
+                <label for="categoria">Categoria:</label>
+                <select name="categoria" required>
+                    <option value="">Selecione a categoria</option>
+                    <option value="Massas">Massas</option>
+                    <option value="Sobremesas">Sobremesas</option>
+                    <option value="Vegano">Vegano</option>
+                    <option value="Carnes">Carnes</option>
+                    <option value="Saladas">Saladas</option>
+                </select><br>
+                <label for="ingredientes">Ingredientes:</label>
+                <textarea name="ingredientes" placeholder="Ingredientes separados por vírgula" required></textarea><br>
+                <label for="instrucoes">Instruções de preparo:</label>
+                <textarea name="instrucoes" placeholder="Escreva um passo a passo para recriar sua receita"
+                    required></textarea><br>
+                <button type="submit">Salvar</button>
+            </form>
+            <a href="/">Voltar</a>
+        </main>
+        <%- include('includes/end') %>
 </body>
+
 </html>
