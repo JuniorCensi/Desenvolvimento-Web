@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat WebSocket</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div id="chat">
+        <div id="messages"></div>
+        <div id="inputArea">
+            <input type="text" id="messageInput" placeholder="Digite sua mensagem..." autocomplete="off" />
+            <button id="sendBtn">Enviar</button>
+        </div>
+    </div>
+    <div id="usernameModal">
+        <div id="usernameBox">
+            <h3>Digite seu nome de usuário:</h3>
+            <div id="usernameInputBtnArea">
+                <input type="text" id="usernameInput" placeholder="Nome de usuário" />
+                <button id="usernameBtn">Entrar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let socket;
+        let username = '';
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        sendBtn.disabled = true;
+        const usernameModal = document.getElementById('usernameModal');
+        const usernameInput = document.getElementById('usernameInput');
+        const usernameBtn = document.getElementById('usernameBtn');
+
+        function addMessage(msg) {
+            const div = document.createElement('div');
+            div.innerHTML = msg;
+            messagesDiv.appendChild(div);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        usernameBtn.onclick = () => {
+            const value = usernameInput.value.trim();
+            if (value) {
+                username = value;
+                usernameModal.style.display = 'none';
+                startSocket();
+                sendBtn.disabled = false;
+                messageInput.focus();
+            }
+        };
+        usernameInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') usernameBtn.click();
+        });
+
+        function startSocket() {
+            socket = io({
+                reconnection: true,
+                reconnectionAttempts: Infinity,
+                reconnectionDelay: 1000
+            });
+            socket.emit('setUsername', username);
+            sendBtn.onclick = sendMessage;
+            messageInput.addEventListener('keydown', e => {
+                if (e.key === 'Enter') sendMessage();
+            });
+            socket.on('chatMessage', data => {
+                addMessage(`<b>${data.username}:</b> ${data.message}`);
+            });
+            socket.on('notification', msg => {
+                addMessage(`<i>${msg}</i>`);
+            });
+            socket.on('history', history => {
+                messagesDiv.innerHTML = '';
+                history.forEach(item => {
+                    addMessage(`<b>${item.username}:</b> ${item.message}`);
+                });
+            });
+            socket.on('disconnect', () => {
+                sendBtn.disabled = true;
+            });
+            socket.on('connect', () => {
+                if (username) {
+                    socket.emit('setUsername', username);
+                    sendBtn.disabled = false;
+                }
+            });
+        }
+        function sendMessage() {
+            if (!socket || !username) return;
+            const msg = messageInput.value.trim();
+            if (msg) {
+                socket.emit('chatMessage', msg);
+                messageInput.value = '';
+            }
+        }
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>
