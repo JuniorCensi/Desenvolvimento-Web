@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Caderno de Campo Digital</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <% if (css) { %>
+    <% css.forEach(function(file) { %>
+      <link rel="stylesheet" href="/css/<%= file %>">
+    <% }) %>
+  <% } %>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Início</a>
+      <a href="/login">Login</a>
+      <a href="/categorias">Categorias</a>
+      <a href="/usuarios">Usuários</a>
+      <!-- Adicione mais links conforme necessário -->
+    </nav>
+  </header>
+  <main>

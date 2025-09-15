@@ -1,0 +1,76 @@
+body {
+  background: linear-gradient(135deg, #e3e6f3 0%, #f7f7fa 100%);
+}
+.login-container {
+  max-width: 350px;
+  margin: 5vh auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #4b2e83;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.login-avatar svg {
+  width: 40px;
+  height: 40px;
+  fill: #fff;
+}
+.login-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4b2e83;
+  margin-bottom: 1.5rem;
+}
+form.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+form.login-form label {
+  font-weight: 500;
+  color: #333;
+}
+form.login-form input {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+form.login-form button {
+  background: #4b2e83;
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+form.login-form button:hover {
+  background: #371c5d;
+}
+.login-footer {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #888;
+  text-align: center;
+}
+@media (max-width: 500px) {
+  .login-container {
+    padding: 1.2rem 0.5rem;
+  }
+}

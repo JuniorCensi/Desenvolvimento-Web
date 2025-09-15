@@ -1,16 +1,10 @@
-import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import usuarioRoutes from './routes/usuarioRoutes.js';
+import { createApp } from './app.js';
 
 dotenv.config();
 
-const app = express();
-
-app.use(express.json());
-app.use('/usuarios', usuarioRoutes);
-
-dotenv.config();
+const app = createApp();
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
@@ -19,5 +13,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch((error) => {
     console.error("Erro ao conectar ao MongoDB:", error);
   });
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 
-app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
+export default app;

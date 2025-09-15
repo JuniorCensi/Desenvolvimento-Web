@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from 'bcryptjs';
 const { Schema, model } = mongoose;
 
 const usuarioSchema = new Schema({
@@ -16,7 +17,38 @@ const usuarioSchema = new Schema({
     cidade: { type: String, required: true, maxlength: 40 },
     estado: { type: String, required: true, maxlength: 2 }
   }]
+}, {
+  timestamps: true,
+  toJSON: {
+    transform(doc, ret) {
+      delete ret.senha;
+      return ret;
+    }
+  },
+  toObject: {
+    transform(doc, ret) {
+      delete ret.senha;
+      return ret;
+    }
+  }
 });
+
+// Hash da senha antes de salvar
+usuarioSchema.pre('save', async function(next) {
+  if (!this.isModified('senha')) return next();
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.senha = await bcrypt.hash(this.senha, salt);
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Método de comparação de senha
+usuarioSchema.methods.compararSenha = async function(senhaPlain) {
+  return bcrypt.compare(senhaPlain, this.senha);
+};
 
 const Usuario = model("Usuario", usuarioSchema);
 
