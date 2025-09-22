@@ -5,20 +5,26 @@ import Usuario from '../models/Usuario.js';
 
 let app;
 
+// Testes para rotas de autenticação (registro e login)
 describe('Auth Routes', () => {
+
+  // Configura o banco de dados de teste antes dos testes
   beforeAll(async () => {
     await connectTestDB();
     app = createApp();
   });
 
+  // Desconecta o banco de dados após os testes
   afterAll(async () => {
     await disconnectTestDB();
   });
 
+  // Limpa o banco de dados entre os testes
   afterEach(async () => {
     await clearDatabase();
   });
 
+  // Descreve o teste de registro
   test('registro cria usuário e retorna token sem senha', async () => {
     const res = await request(app)
       .post('/auth/registro')
@@ -32,7 +38,8 @@ describe('Auth Routes', () => {
           rua: 'Rua X', numero: '10', cep: '12345-000', bairro: 'Centro', cidade: 'Cidade', estado: 'SP'
         }]
       });
-
+    
+    // Respostas esperadas
     expect(res.status).toBe(201);
     expect(res.body.token).toBeDefined();
     expect(res.body.usuario).toBeDefined();

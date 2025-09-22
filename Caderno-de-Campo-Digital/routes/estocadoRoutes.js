@@ -1,39 +1,30 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
-import { 
-    criarEstocado, 
-    getEstocados, 
-    getEstocadoById, 
+import {
+    criarEstocado,
+    getEstocados,
+    getEstocadoById,
     getEstoqueBaixo,
     atualizarEstocado,
-    atualizarQuantidade, 
-    deletarEstocado 
+    atualizarQuantidade,
+    deletarEstocado
 } from '../controllers/estocadoController.js';
 
 const router = Router();
 
-// Validações
 const validarEstocado = [
     body('item')
-        .notEmpty()
-        .withMessage('Item é obrigatório.')
-        .isMongoId()
-        .withMessage('ID do item inválido.'),
+        .notEmpty().withMessage('Item é obrigatório.')
+        .isMongoId().withMessage('ID do item inválido.'),
     body('quantidade')
-        .notEmpty()
-        .withMessage('Quantidade é obrigatória.')
-        .isInt({ min: 1 })
-        .withMessage('Quantidade deve ser um número inteiro positivo.'),
+        .notEmpty().withMessage('Quantidade é obrigatória.')
+        .isInt({ min: 1 }).withMessage('Quantidade deve ser um número inteiro positivo.'),
     body('estimativaUnidades')
-        .notEmpty()
-        .withMessage('Estimativa de unidades é obrigatória.')
-        .isInt({ min: 1 })
-        .withMessage('Estimativa de unidades deve ser um número inteiro positivo.'),
+        .notEmpty().withMessage('Estimativa de unidades é obrigatória.')
+        .isInt({ min: 1 }).withMessage('Estimativa de unidades deve ser um número inteiro positivo.'),
     body('estimativaPeso')
-        .notEmpty()
-        .withMessage('Estimativa de peso é obrigatória.')
-        .isFloat({ min: 0 })
-        .withMessage('Estimativa de peso deve ser um número positivo.')
+        .notEmpty().withMessage('Estimativa de peso é obrigatória.')
+        .isFloat({ min: 0 }).withMessage('Estimativa de peso deve ser um número positivo.')
 ];
 
 const validarQuantidade = [

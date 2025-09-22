@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil do Usuário</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/userData.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body, input, button, label, h2, h3, .form-group, .perfil-container {
+      font-family: 'Kanit', 'Inter', Arial, sans-serif;
+    }
+  </style>
+</head>
+<body class="perfil-page">
+  <%- include('partials/header') %>
+  <div class="perfil-container">
+    <div class="perfil-form-esquerda">
+      <h2>Dados do Usuário</h2>
+      <form id="perfil-form">
+      <div class="form-group">
+        <label>Nome:</label>
+        <input type="text" name="nome" readonly>
+      </div>
+      <div class="form-group">
+        <label>CPF:</label>
+        <input type="text" name="cpf" readonly>
+      </div>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" name="email" readonly>
+      </div>
+      <div class="form-group">
+        <label>Telefone Celular:</label>
+        <input type="text" name="telefoneCel" required>
+      </div>
+      <div class="form-group">
+        <label>Telefone Residencial:</label>
+        <input type="text" name="telefoneRes">
+      </div>
+      <button type="submit">Salvar Dados</button>
+    </form>
+  </div>
+  <div class="perfil-form-direita">
+    <h2>Endereços</h2>
+    <div class="endereco-cards">
+      <div id="enderecos-list"></div>
+    </div>
+    <button id="adicionar-endereco-btn" type="button">Adicionar Endereço</button>
+    <form id="novo-endereco-form" class="endereco-form" style="display:none;">
+      <div class="form-group">
+        <label>Rua:</label>
+        <input type="text" name="rua" required>
+      </div>
+      <div class="form-group">
+        <label>Número:</label>
+        <input type="text" name="numero" required>
+      </div>
+      <div class="form-group">
+        <label>CEP:</label>
+        <input type="text" name="cep" required>
+      </div>
+      <div class="form-group">
+        <label>Bairro:</label>
+        <input type="text" name="bairro" required>
+      </div>
+      <div class="form-group">
+        <label>Cidade:</label>
+        <input type="text" name="cidade" required>
+      </div>
+      <div class="form-group">
+        <label>Estado:</label>
+        <input type="text" name="estado" required maxlength="2">
+      </div>
+      <button type="submit">Adicionar Endereço</button>
+    </form>
+  </div>
+</div>
+<%- include('partials/footer') %>
+
+<script src="/js/userData.js"></script>

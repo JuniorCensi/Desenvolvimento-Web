@@ -1,6 +1,6 @@
 # Estratégia de Testes
 
-Este projeto utiliza **Jest**, **Supertest** e **mongodb-memory-server** para testes automatizados sem necessidade de um Mongo real.
+Este projeto utiliza **Jest**, **Supertest** e **mongodb-memory-server** para testes automatizados, sem necessidade de conexão com Mongo real.
 
 ## Objetivos dos Testes
 - Garantir integridade das regras de negócio (auth, validações, relacionamentos)
@@ -34,24 +34,8 @@ Executar testes:
 ```
 npm test
 ```
-
 ## Ambiente de Teste
-Não é necessário arquivo `.env` para os testes de CRUD simples, pois o Mongo é criado em memória. Caso precise testar algo que depende de variáveis (ex: JWT secret customizado), você pode:
-```
-cross-env NODE_ENV=test JWT_SECRET=teste123 npm test
-```
-
-## Boas Práticas Adotadas
-- Banco em memória garante isolamento e velocidade
-- Sem dependência de dados anteriores (estado limpo por teste)
-- Testes focados: um comportamento por `test()`
-- `runInBand` evita concorrência desnecessária com MongoMemoryServer
-
-## Extensões Futuras
-- Adicionar testes para: Itens, Variedades, Estoque, Vendas, Relatórios
-- Mock de datas (ex: `jest.useFakeTimers`) para relatórios
-- Cobertura de código (ex: `--coverage` no script de test)
-- Pipeline CI (GitHub Actions) rodando `npm ci && npm test`
+Não é necessário arquivo `.env` para os testes de CRUD simples, pois o Mongo é criado em memória. 
 
 ## Exemplo de Novo Teste (Modelo)
 ```javascript
@@ -72,12 +56,3 @@ describe('Exemplo', () => {
 });
 ```
 
-## Próximos Passos Recomendados
-1. Adicionar testes de erro (IDs inválidos, validações, estoque insuficiente)
-2. Proteger rotas e testar acesso sem token / com token inválido
-3. Adicionar `role` no usuário e testar autorização
-4. Implementar cobertura (`npm pkg set scripts.test="cross-env NODE_ENV=test jest --runInBand --coverage"`)
-5. Testes de performance pontuais (ex: grandes volumes de itens) usando seeds
-
----
-Dúvidas ou quer ajuda para criar os testes restantes? Abra uma issue interna ou peça diretamente. 🚀

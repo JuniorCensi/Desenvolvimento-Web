@@ -1,41 +1,32 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
-import { 
-    criarVenda, 
-    getVendas, 
-    getVendaById, 
+import {
+    criarVenda,
+    getVendas,
+    getVendaById,
     getRelatorioVendas,
     atualizarVenda,
-    cancelarVenda 
+    cancelarVenda
 } from '../controllers/vendaController.js';
 
 const router = Router();
 
-// Validações
 const validarVenda = [
     body('itemEmEstoque')
-        .notEmpty()
-        .withMessage('Item em estoque é obrigatório.')
-        .isMongoId()
-        .withMessage('ID do item em estoque inválido.'),
+        .notEmpty().withMessage('Item em estoque é obrigatório.')
+        .isMongoId().withMessage('ID do item em estoque inválido.'),
     body('quantidade')
-        .notEmpty()
-        .withMessage('Quantidade é obrigatória.')
-        .isInt({ min: 1 })
-        .withMessage('Quantidade deve ser um número inteiro positivo.'),
+        .notEmpty().withMessage('Quantidade é obrigatória.')
+        .isInt({ min: 1 }).withMessage('Quantidade deve ser um número inteiro positivo.'),
     body('precoTotal')
-        .notEmpty()
-        .withMessage('Preço total é obrigatório.')
-        .isFloat({ min: 0 })
-        .withMessage('Preço total deve ser um número positivo.')
+        .notEmpty().withMessage('Preço total é obrigatório.')
+        .isFloat({ min: 0 }).withMessage('Preço total deve ser um número positivo.')
 ];
 
 const validarAtualizacaoVenda = [
     body('precoTotal')
-        .notEmpty()
-        .withMessage('Preço total é obrigatório.')
-        .isFloat({ min: 0 })
-        .withMessage('Preço total deve ser um número positivo.')
+        .notEmpty().withMessage('Preço total é obrigatório.')
+        .isFloat({ min: 0 }).withMessage('Preço total deve ser um número positivo.')
 ];
 
 // Rotas CRUD

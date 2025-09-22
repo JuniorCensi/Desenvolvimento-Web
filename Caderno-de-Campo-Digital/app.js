@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import winston from 'winston';
 import rateLimit from 'express-rate-limit';
 
-// Logger Winston
+// Logger Winston para relatórios de acesso e erros
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
@@ -28,7 +28,9 @@ import itemRoutes from './routes/itemRoutes.js';
 import estocadoRoutes from './routes/estocadoRoutes.js';
 import vendaRoutes from './routes/vendaRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import { protegerSite } from './middleware/authMiddleware.js';
 
+// Função para criação da aplicação Express (usada no index.js) 
 export function createApp() {
   const app = express();
   app.set('view engine', 'ejs');
@@ -37,14 +39,16 @@ export function createApp() {
   app.use(helmet());
   app.use(cors());
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
   app.use(morgan('combined', { stream: { write: msg => logger.info(msg.trim()) } }));
 
-  // Rate limit apenas para login
+  // Rate limit apenas para login (evita ataques de força bruta)
   const loginLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutos
     max: 10, // 10 tentativas por IP
     message: { message: 'Muitas tentativas de login, tente novamente em alguns minutos.' }
   });
+
   app.use('/auth/login', loginLimiter);
   app.use('/auth', authRoutes);
   app.use('/usuarios', usuarioRoutes);
@@ -55,12 +59,33 @@ export function createApp() {
   app.use('/estoque', estocadoRoutes);
   app.use('/vendas', vendaRoutes);
 
+  // Auth Middleware para proteger as rotas de páginas (exceto login)
+  app.use(protegerSite);
+
+  // Home protegida (renderiza sem dados do usuário, JS busca via API)
   app.get('/', (req, res) => {
-    res.render('index');
+    res.render('home');
   });
 
+  // Página de produção (renderiza, em cards, a lista de variedades)
+  app.get('/producao', (req, res) => {
+    res.render('producao');
+  });
+
+  // Perfil do usuário (renderiza sem dados do usuário, JS busca via API)
+  app.get('/perfil', (req, res) => {
+    res.render('usuarioPerfil', { perfilAtivo: true });
+  });
+
+  // Renderiza a página de login
   app.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { erro: null });
+  });
+
+  // Logout: limpa o token do localStorage
+  app.get('/logout', (req, res) => {
+    res.setHeader('Set-Cookie', 'Authorization=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict');
+    res.render('login', { erro: null });
   });
 
   app.use(notFound);

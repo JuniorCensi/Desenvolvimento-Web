@@ -5,10 +5,10 @@ const { Schema, model } = mongoose;
 const usuarioSchema = new Schema({
   nome: { type: String, required: true, trim: true, maxlength: 40 },
   cpf: { type: String, required: true, maxlength: 14, unique: true },
-  telefoneCel: { type: String, required: true, maxlength: 15 },
-  telefoneRes: { type: String, maxlength: 14 },
+  telefoneCel: { type: String, required: true, maxlength: 20 },
+  telefoneRes: { type: String, maxlength: 20 },
   email: { type: String, required: true, unique: true, trim: true, maxlength: 100 },
-  senha: { type: String, required: true, trim: true, minlength: 6, maxlength: 15 },
+  senha: { type: String, required: true, trim: true, minlength: 6, maxlength: 100 },
   endereco: [{
     rua: { type: String, required: true, maxlength: 40 },
     numero: { type: String, required: true, maxlength: 5, default: "s/n" },

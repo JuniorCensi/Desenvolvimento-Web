@@ -13,9 +13,7 @@ export async function criarEstocado(req, res) {
     try {
         const novoEstocado = new Estocado({
             item,
-            quantidade,
-            estimativaUnidades,
-            estimativaPeso
+            quantidade
         });
 
         await novoEstocado.save();

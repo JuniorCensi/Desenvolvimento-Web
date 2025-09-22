@@ -4,8 +4,10 @@ import { createApp } from './app.js';
 
 dotenv.config();
 
+// Cria a aplicação Express
 const app = createApp();
 
+// Conexão com MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Conexão com o MongoDB estabelecida com sucesso!");

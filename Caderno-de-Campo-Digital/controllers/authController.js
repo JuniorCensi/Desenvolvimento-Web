@@ -29,21 +29,18 @@ export async function registro(req, res) {
   }
 }
 
+// POST - Login do usuário
 export async function login(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
+  // Permitir login via email ou CPF
   const { emailOuCpf, senha } = req.body;
   try {
     const usuario = await Usuario.findOne({ $or: [{ email: emailOuCpf }, { cpf: emailOuCpf }] });
-    if (!usuario) {
-      return res.status(401).json({ message: 'Credenciais inválidas.' });
-    }
-
-    const senhaConfere = await usuario.compararSenha(senha);
-    if (!senhaConfere) {
+    if (!usuario || !(await usuario.compararSenha(senha))) {
       return res.status(401).json({ message: 'Credenciais inválidas.' });
     }
 
@@ -54,6 +51,7 @@ export async function login(req, res) {
   }
 }
 
+// Gera um JWT que expira em 2 horas
 function gerarToken(id) {
   const secret = process.env.JWT_SECRET || 'devsecret';
   return jwt.sign({ id }, secret, { expiresIn: '2h' });

@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+
+/* Forçando a utilização da fonte 'Kanit' em todos os elementos */
+*, *::before, *::after {
+    font-family: 'Kanit', Arial, Helvetica, sans-serif !important;
+}

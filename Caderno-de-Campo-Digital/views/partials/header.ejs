@@ -1,24 +1,47 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %> | Caderno de Campo Digital</title>
-  <link rel="stylesheet" href="/css/main.css">
-  <% if (css) { %>
-    <% css.forEach(function(file) { %>
-      <link rel="stylesheet" href="/css/<%= file %>">
-    <% }) %>
-  <% } %>
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="/">Início</a>
-      <a href="/login">Login</a>
-      <a href="/categorias">Categorias</a>
-      <a href="/usuarios">Usuários</a>
-      <!-- Adicione mais links conforme necessário -->
-    </nav>
-  </header>
-  <main>
+<header class="app-header">
+  
+  <div class="menu-toggle">
+  <div class="logo">
+    <i class="bi bi-journal-text"></i>
+    <span>Caderno de <span class="highlight">Campo</span> Digital</span>
+  </div>
+
+  <nav class="nav-bar">
+    <ul>
+      <li>
+        <a href="/" class="nav-item active">
+          <i class="bi bi-house"></i>
+          <span>Tela Inicial</span>
+        </a>
+      </li>
+      <li>
+        <a href="/producao" class="nav-item">
+          <i class="bi bi-plus-circle"></i>
+          <span>Produção</span>
+        </a>
+      </li>
+      <li>
+        <a href="/estoque" class="nav-item">
+          <i class="bi bi-box"></i>
+          <span>Estoque</span>
+        </a>
+      </li>
+      <li>
+        <a href="/entregas" class="nav-item">
+          <i class="bi bi-truck"></i>
+          <span>Entregas</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>
+
+  <div class="user-info">
+  <a href="/perfil" class="profile-link<%= (typeof perfilAtivo !== 'undefined' && perfilAtivo) ? ' active' : '' %>">
+      <i class="bi bi-person-circle"></i>
+      <span>Júnior</span>
+    </a>
+    <a href="/logout" class="logout-link">Sair</a>
+  </div>
+</header>
+<script src="/js/nav-active.js"></script>

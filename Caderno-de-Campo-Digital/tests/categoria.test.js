@@ -4,6 +4,7 @@ import { createApp } from '../app.js';
 
 let app;
 
+// Testes CRUD para Categoria
 describe('Categoria CRUD', () => {
   beforeAll(async () => {
     await connectTestDB();
