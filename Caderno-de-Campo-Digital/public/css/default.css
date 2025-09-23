@@ -1,0 +1,57 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d3d3d3;
+}
+
+#future-implementation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    gap: 25px;
+    flex-wrap: wrap;
+    font-size: 30px;
+}
+
+#future-implementation i {
+    font-size: 6rem;
+    color: #333;
+}
+
+#future-implementation-subtext {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    gap: 20px;
+}
+
+#future-implementation-subtext i {
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.warning-stripes {
+    width: 100%;
+    height: 80px;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 214, 0, 0.6),
+        rgba(255, 214, 0, 0.6) 40px,
+        rgba(34, 34, 34, 0.6) 40px,
+        rgba(34, 34, 34, 0.6) 80px
+    );
+    margin-bottom: 20px;
+}
+
+.warning-stripes.bottom {
+     margin-top: 20px;
+}
+
+.warning-stripes.top {
+     margin-top: 20px;
+}

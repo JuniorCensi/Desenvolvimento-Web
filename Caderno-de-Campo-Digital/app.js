@@ -64,12 +64,22 @@ export function createApp() {
 
   // Home protegida (renderiza sem dados do usuário, JS busca via API)
   app.get('/', (req, res) => {
-    res.render('home');
+    res.render('default');
   });
 
   // Página de produção (renderiza, em cards, a lista de variedades)
   app.get('/producao', (req, res) => {
     res.render('producao');
+  });
+
+   // Página de produção (renderiza, em cards, a lista de variedades)
+  app.get('/estoque', (req, res) => {
+    res.render('default');
+  });
+
+   // Página de produção (renderiza, em cards, a lista de variedades)
+  app.get('/entregas', (req, res) => {
+    res.render('default');
   });
 
   // Perfil do usuário (renderiza sem dados do usuário, JS busca via API)

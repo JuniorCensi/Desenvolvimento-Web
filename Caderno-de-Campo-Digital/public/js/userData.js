@@ -83,11 +83,14 @@ function validateEnderecoForm(form) {
       valid = false;
     }
   });
-  // CEP: só números, 8 dígitos
+  // CEP: formato XXXXX-XXX
   const cep = form.cep;
-  if (cep && !/^\d{8}$/.test(cep.value.replace(/\D/g, ''))) {
-    setFieldError(cep, 'CEP deve ter 8 dígitos numéricos.');
-    valid = false;
+  if (cep) {
+    const valorCep = cep.value.trim();
+    if (!/^\d{5}-\d{3}$/.test(valorCep)) {
+      setFieldError(cep, 'Não corresponde ao formato XXXXX-XXX');
+      valid = false;
+    }
   }
   // Estado: 2 letras
   const estado = form.estado;
@@ -127,6 +130,18 @@ document.addEventListener('DOMContentLoaded', async function() {
   // Dispara evento input para garantir máscara dinâmica mesmo com valor inicial
   if (telCel) telCel.dispatchEvent(new Event('input', { bubbles: true }));
   if (telRes) telRes.dispatchEvent(new Event('input', { bubbles: true }));
+
+    // Validação e máscara para o formulário de novo endereço
+    const novoEnderecoForm = document.getElementById('novo-endereco-form');
+    if (novoEnderecoForm) {
+      novoEnderecoForm.querySelectorAll('input[name="cep"]').forEach(el => aplicarMascaraCEP(el));
+      novoEnderecoForm.querySelectorAll('input[name="estado"]').forEach(el => aplicarMascaraUF(el));
+      novoEnderecoForm.onsubmit = function(e) {
+        e.preventDefault();
+        if (!validateEnderecoForm(novoEnderecoForm)) return;
+        // Aqui você pode adicionar o código para enviar o endereço
+      };
+    }
 });
 
 // Preenche o formulário de perfil com os dados do usuário

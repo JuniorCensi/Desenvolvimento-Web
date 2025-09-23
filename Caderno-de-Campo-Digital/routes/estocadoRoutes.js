@@ -42,7 +42,7 @@ const validarQuantidade = [
 
 // Rotas CRUD
 router.post('/', validarEstocado, criarEstocado);
-router.get('/', getEstocados);
+router.get('/', (req, res) => res.render('default'));
 router.get('/baixo', getEstoqueBaixo); // Deve vir antes de /:id
 router.get('/:id', getEstocadoById);
 router.put('/:id', validarEstocado, atualizarEstocado);
